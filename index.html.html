@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HeavyHearts — A Mental Health Organization</title>
+<link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Bellefair&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>emailjs.init('f92TFLCTylouzi58jua3n');</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--ivy:#3D4F2E;--orchid:#C9A8BC;--linen:#FAF6F0;--stone:#7A8A96;--orchid-light:#f0e6ec;}
+html{scroll-behavior:smooth;}
+body{background:var(--linen);color:var(--ivy);font-family:'Bellefair',serif;}
+.lace-bg{background-color:#fff;background-image:url('https://raw.githubusercontent.com/tryingtodothis/heavyhearts/main/lace.png');background-repeat:repeat;background-size:400px;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--linen);border-bottom:1px solid var(--orchid);padding:0 2.5rem;height:64px;display:flex;align-items:center;gap:1rem;}
+.nav-brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;flex-shrink:0;}
+.nav-brand img{width:36px;height:36px;object-fit:contain;}
+.nav-title{font-family:'Monsieur La Doulaise',cursive;font-size:2rem;line-height:1;}
+.nav-title .heavy{color:var(--ivy);}
+.nav-title .hearts{color:var(--orchid);}
+.nav-divider{width:1px;height:30px;background:var(--stone);opacity:.35;flex-shrink:0;}
+.nav-sub{font-family:'Bellefair',serif;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone);white-space:nowrap;}
+.nav-links{margin-left:auto;display:flex;gap:2rem;list-style:none;align-items:center;}
+.nav-links a{font-family:'Bellefair',serif;font-size:.85rem;letter-spacing:.06em;color:var(--ivy);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--orchid);}
+.nav-admin-btn{font-family:'Bellefair',serif;font-size:.75rem;letter-spacing:.08em;color:var(--stone);background:none;border:1px solid var(--stone);border-radius:50px;padding:.3rem .9rem;cursor:pointer;opacity:.5;transition:opacity .2s;}
+.nav-admin-btn:hover{opacity:1;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;margin-left:auto;}
+.hamburger span{width:22px;height:2px;background:var(--ivy);border-radius:2px;transition:.3s;}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--linen);border-bottom:1px solid var(--orchid);padding:1.2rem 1.5rem;z-index:99;flex-direction:column;gap:1rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a,.mobile-menu button{font-family:'Bellefair',serif;font-size:1rem;color:var(--ivy);text-decoration:none;background:none;border:none;cursor:pointer;text-align:left;padding:.3rem 0;}
+
+/* ── SECTIONS ── */
+section{min-height:100vh;padding:100px 5vw 60px;}
+#home{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.hero-title{font-family:'Monsieur La Doulaise',cursive;font-size:clamp(4rem,13vw,11rem);line-height:.95;margin-bottom:1.8rem;}
+.hero-title .heavy{color:var(--ivy);}
+.hero-title .hearts{color:var(--orchid);}
+.hero-tagline{font-family:'Bellefair',serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.35rem);color:var(--stone);margin-bottom:.5rem;}
+.hero-attr{font-family:'Bellefair',serif;font-style:italic;font-size:.9rem;color:var(--stone);margin-bottom:3rem;}
+.pill-row{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;}
+.pill{display:inline-flex;align-items:center;gap:.6rem;padding:.6rem 1.2rem;border-radius:50px;border:1.5px solid var(--ivy);background:transparent;color:var(--ivy);font-family:'Bellefair',serif;font-size:.88rem;cursor:pointer;text-decoration:none;transition:all .25s;}
+.pill:hover{background:var(--ivy);color:var(--linen);}
+.pill:hover svg [data-s]{stroke:var(--linen)!important;}
+.pill:hover svg [data-f]{fill:var(--linen)!important;stroke:var(--linen)!important;}
+.pill svg{overflow:visible;flex-shrink:0;}
+.sec-title{font-family:'Monsieur La Doulaise',cursive;font-size:clamp(2.5rem,7vw,5.5rem);color:var(--ivy);margin-bottom:.5rem;}
+.sec-sub{font-family:'Bellefair',serif;font-size:1rem;color:var(--stone);margin-bottom:2.5rem;max-width:560px;line-height:1.7;}
+.search-box{width:100%;max-width:480px;padding:.75rem 1.2rem;border:1.5px solid var(--orchid);border-radius:50px;background:white;font-family:'Bellefair',serif;font-size:1rem;color:var(--ivy);outline:none;margin-bottom:2rem;}
+
+/* ── HOTLINES ── */
+.continent-group{margin-bottom:2rem;}
+.continent-label{font-family:'Bellefair',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);border-bottom:1px solid var(--orchid);padding-bottom:.4rem;margin-bottom:1rem;}
+.hotline-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.75rem;}
+.hotline-card{background:white;border:1px solid var(--orchid-light);border-radius:12px;padding:1rem 1.2rem;}
+.hotline-name{font-family:'Bellefair',serif;font-size:.92rem;color:var(--ivy);}
+.hotline-country{font-size:.76rem;color:var(--stone);margin:.15rem 0;}
+.hotline-num{font-family:'Bellefair',serif;font-size:.88rem;color:var(--orchid);cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px;}
+.hotline-num:hover{color:var(--ivy);}
+
+/* ── MODALS ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.active{display:flex;}
+.modal{background:var(--linen);border-radius:20px;padding:2rem;max-width:400px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.2);}
+.modal h3{font-family:'Monsieur La Doulaise',cursive;font-size:2.4rem;color:var(--ivy);margin-bottom:.5rem;}
+.modal p{font-family:'Bellefair',serif;font-size:1rem;color:var(--stone);margin-bottom:1.5rem;line-height:1.6;}
+.modal .num-display{font-size:1.3rem;color:var(--orchid);margin-bottom:1.5rem;}
+.modal-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-call{padding:.65rem 1.8rem;background:var(--ivy);color:var(--linen);border:none;border-radius:50px;font-family:'Bellefair',serif;font-size:1rem;cursor:pointer;}
+.btn-cancel{padding:.65rem 1.8rem;background:transparent;color:var(--stone);border:1.5px solid var(--stone);border-radius:50px;font-family:'Bellefair',serif;font-size:1rem;cursor:pointer;}
+
+/* ── TABS ── */
+.tab-row{display:flex;border-bottom:2px solid var(--orchid);margin-bottom:2.5rem;overflow-x:auto;}
+.tab-btn{font-family:'Bellefair',serif;font-size:1rem;padding:.6rem 1.6rem;background:none;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;cursor:pointer;color:var(--stone);transition:all .2s;white-space:nowrap;}
+.tab-btn.active{color:var(--ivy);border-bottom-color:var(--ivy);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* ── GATE ── */
+.advocate-gate{text-align:center;padding:3rem 1rem;max-width:420px;margin:0 auto;}
+.advocate-gate h3{font-family:'Monsieur La Doulaise',cursive;font-size:2.8rem;color:var(--ivy);margin-bottom:.5rem;}
+.advocate-gate p{font-family:'Bellefair',serif;font-size:.93rem;color:var(--stone);margin-bottom:1.8rem;line-height:1.7;}
+.gate-form{display:flex;flex-direction:column;gap:.9rem;max-width:300px;margin:0 auto;}
+.gate-form input{padding:.7rem 1rem;border:1.5px solid var(--orchid);border-radius:10px;font-family:'Bellefair',serif;font-size:.95rem;color:var(--ivy);background:white;outline:none;}
+.gate-err{font-family:'Bellefair',serif;font-size:.85rem;color:#a05060;min-height:1rem;}
+.btn-primary{padding:.72rem 2rem;background:var(--ivy);color:var(--linen);border:none;border-radius:50px;font-family:'Bellefair',serif;font-size:1rem;cursor:pointer;transition:background .2s;}
+.btn-primary:hover{background:var(--orchid);}
+
+/* ── SLIDES ── */
+.slide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.2rem;margin-bottom:3rem;}
+.slide-card{background:var(--ivy);color:var(--linen);border-radius:16px;padding:1.5rem;cursor:pointer;transition:transform .2s;}
+.slide-card:hover{transform:translateY(-4px);}
+.slide-reading{font-family:'Bellefair',serif;font-size:.72rem;letter-spacing:.12em;opacity:.6;margin-bottom:.5rem;}
+.slide-topic{font-family:'Monsieur La Doulaise',cursive;font-size:1.9rem;line-height:1.1;}
+.slide-dl{margin-top:1.2rem;font-size:.78rem;opacity:.7;font-family:'Bellefair',serif;}
+
+/* ── POSTER ── */
+.poster-section{margin-top:2rem;}
+.poster-section h3{font-family:'Bellefair',serif;font-size:1.1rem;letter-spacing:.08em;color:var(--ivy);margin-bottom:.4rem;}
+.poster-section>p{font-family:'Bellefair',serif;font-size:.88rem;color:var(--stone);margin-bottom:1rem;}
+.chat-window{background:white;border:1.5px solid var(--orchid);border-radius:16px;padding:1.2rem;min-height:60px;max-height:260px;overflow-y:auto;margin-bottom:.8rem;display:flex;flex-direction:column;gap:.8rem;}
+.chat-msg{font-family:'Bellefair',serif;font-size:.88rem;line-height:1.6;padding:.7rem 1rem;border-radius:12px;max-width:85%;}
+.chat-msg.ai{background:var(--orchid-light);color:var(--ivy);align-self:flex-start;}
+.chat-msg.user{background:var(--ivy);color:var(--linen);align-self:flex-end;}
+.chat-input-row{display:flex;gap:.7rem;}
+.chat-input{flex:1;padding:.65rem 1rem;border:1.5px solid var(--orchid);border-radius:50px;font-family:'Bellefair',serif;font-size:.92rem;color:var(--ivy);outline:none;background:white;min-width:0;}
+.chat-send{padding:.65rem 1.2rem;background:var(--ivy);color:var(--linen);border:none;border-radius:50px;font-family:'Bellefair',serif;font-size:.88rem;cursor:pointer;flex-shrink:0;}
+.poster-preview{margin-top:1.5rem;display:none;}
+.poster-preview-label{font-family:'Bellefair',serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);margin-bottom:.6rem;}
+.poster-frame-wrap{border:1.5px solid var(--orchid);border-radius:16px;overflow:hidden;width:100%;height:500px;}
+.poster-frame-wrap iframe{width:100%;height:100%;border:none;display:block;}
+.dl-poster-btn{margin-top:.8rem;padding:.62rem 1.6rem;background:var(--ivy);color:var(--linen);border:none;border-radius:50px;font-family:'Bellefair',serif;cursor:pointer;font-size:.88rem;display:inline-flex;align-items:center;gap:.5rem;}
+.dl-poster-btn:hover{background:var(--orchid);}
+
+/* ── PULSE ── */
+.pulse-form{background:white;border:1.5px solid var(--orchid-light);border-radius:20px;padding:1.8rem;max-width:560px;}
+.form-group{margin-bottom:1.2rem;}
+.form-group label{display:block;font-family:'Bellefair',serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);margin-bottom:.4rem;}
+.form-group textarea,.form-group input{width:100%;padding:.72rem 1rem;border:1.5px solid var(--orchid);border-radius:10px;font-family:'Bellefair',serif;font-size:1rem;color:var(--ivy);outline:none;background:var(--linen);}
+.form-group textarea{resize:vertical;min-height:130px;}
+.code-display{margin-top:1.5rem;padding:1.2rem 1.5rem;background:var(--orchid-light);border-radius:12px;font-family:'Bellefair',serif;display:none;}
+.code-display .code{font-size:1.9rem;letter-spacing:.3em;color:var(--ivy);}
+.code-display p{font-size:.83rem;color:var(--stone);margin-top:.3rem;}
+.pro-section{margin-top:3rem;border-top:1px solid var(--orchid);padding-top:2rem;}
+.pro-section h3{font-family:'Monsieur La Doulaise',cursive;font-size:2.2rem;color:var(--ivy);margin-bottom:.5rem;}
+.pro-tabs{display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.pro-tab{padding:.48rem 1.1rem;border-radius:50px;border:1.5px solid var(--stone);background:none;font-family:'Bellefair',serif;font-size:.88rem;color:var(--stone);cursor:pointer;}
+.pro-tab.active{background:var(--ivy);color:var(--linen);border-color:var(--ivy);}
+.pro-form{display:none;max-width:400px;}
+.pro-form.active{display:block;}
+
+/* ── HH CARDS ── */
+.hh-cards{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.hh-card{border:1.5px solid var(--orchid-light);border-radius:20px;padding:1.8rem;background:white;}
+.hh-card-title{font-family:'Monsieur La Doulaise',cursive;font-size:2.1rem;color:var(--ivy);margin-bottom:.3rem;}
+.hh-card-sub{font-family:'Bellefair',serif;font-size:.83rem;color:var(--stone);margin-bottom:1.4rem;}
+.story-tabs{display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap;}
+.story-tab{padding:.38rem .95rem;border-radius:50px;border:1.5px solid var(--stone);background:none;font-family:'Bellefair',serif;font-size:.83rem;color:var(--stone);cursor:pointer;}
+.story-tab.active{background:var(--ivy);color:var(--linen);border-color:var(--ivy);}
+.story-panel{display:none;}
+.story-panel.active{display:block;}
+.story-card{background:var(--linen);border-left:3px solid var(--orchid);padding:1rem 1.2rem;border-radius:0 10px 10px 0;margin-bottom:1rem;}
+.story-card blockquote{font-family:'Bellefair',serif;font-style:italic;font-size:.93rem;color:var(--ivy);line-height:1.7;}
+.story-card cite{font-size:.78rem;color:var(--stone);display:block;margin-top:.4rem;}
+.share-textarea{width:100%;min-height:96px;padding:.72rem 1rem;border:1.5px solid var(--orchid);border-radius:10px;font-family:'Bellefair',serif;font-size:.93rem;color:var(--ivy);resize:vertical;background:var(--linen);outline:none;margin-bottom:.8rem;}
+
+/* ── CERT ── */
+.cert-section{margin-top:2rem;border-top:1px solid var(--orchid-light);padding-top:1.5rem;}
+.cert-section-title{font-family:'Bellefair',serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-bottom:.8rem;}
+.cert-code-row{display:flex;gap:.7rem;align-items:center;margin-bottom:.6rem;flex-wrap:wrap;}
+.cert-code-input{flex:1;min-width:120px;padding:.62rem 1rem;border:1.5px solid var(--orchid);border-radius:10px;font-family:'Bellefair',serif;font-size:1rem;letter-spacing:.18em;color:var(--ivy);background:var(--linen);outline:none;text-transform:uppercase;}
+.cert-unlock-btn{padding:.62rem 1.3rem;background:var(--ivy);color:var(--linen);border:none;border-radius:50px;font-family:'Bellefair',serif;font-size:.88rem;cursor:pointer;white-space:nowrap;}
+.cert-unlock-btn:hover{background:var(--orchid);}
+.cert-msg{font-family:'Bellefair',serif;font-size:.83rem;color:var(--stone);min-height:1.2rem;margin-bottom:.4rem;}
+.cert-msg.success{color:var(--ivy);}
+.cert-msg.error{color:#a05060;}
+.cert-dl-btn{padding:.62rem 1.4rem;background:transparent;border:1.5px solid var(--orchid);color:var(--orchid);border-radius:50px;font-family:'Bellefair',serif;font-size:.88rem;cursor:pointer;display:none;align-items:center;gap:.5rem;}
+.cert-dl-btn:hover{background:var(--orchid);color:white;}
+
+/* ── ABOUT ── */
+#about{max-width:760px;margin:0 auto;}
+.about-text{font-family:'Bellefair',serif;font-size:1.03rem;line-height:1.9;color:var(--ivy);margin-bottom:2rem;}
+.quote-block{border-left:3px solid var(--orchid);padding:1.2rem 1.5rem;margin:2rem 0;background:var(--orchid-light);border-radius:0 12px 12px 0;}
+.quote-block blockquote{font-family:'Bellefair',serif;font-style:italic;font-size:1.1rem;color:var(--ivy);line-height:1.7;}
+.quote-block cite{font-size:.83rem;color:var(--stone);display:block;margin-top:.6rem;}
+.back-top{display:inline-flex;align-items:center;gap:.5rem;margin-top:2rem;padding:.62rem 1.4rem;border:1.5px solid var(--ivy);border-radius:50px;font-family:'Bellefair',serif;font-size:.88rem;color:var(--ivy);cursor:pointer;background:none;}
+.back-top:hover{background:var(--ivy);color:var(--linen);}
+
+/* ── ADMIN ── */
+.admin-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;align-items:center;justify-content:center;padding:1rem;}
+.admin-overlay.active{display:flex;}
+.admin-box{background:var(--linen);border-radius:20px;padding:2rem;max-width:480px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);max-height:90vh;overflow-y:auto;}
+.admin-box h3{font-family:'Monsieur La Doulaise',cursive;font-size:2.2rem;color:var(--ivy);margin-bottom:1.2rem;}
+.admin-section{margin-bottom:1.8rem;padding-bottom:1.8rem;border-bottom:1px solid var(--orchid-light);}
+.admin-section:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.admin-section-title{font-family:'Bellefair',serif;font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone);margin-bottom:.8rem;}
+.admin-input{width:100%;padding:.62rem 1rem;border:1.5px solid var(--orchid);border-radius:10px;font-family:'Bellefair',serif;font-size:.93rem;color:var(--ivy);background:white;outline:none;margin-bottom:.7rem;}
+.admin-btn{padding:.58rem 1.4rem;background:var(--ivy);color:var(--linen);border:none;border-radius:50px;font-family:'Bellefair',serif;font-size:.88rem;cursor:pointer;}
+.admin-btn:hover{background:var(--orchid);}
+.admin-btn.danger{background:#a05060;}
+.admin-result{margin-top:.8rem;padding:.9rem 1.1rem;background:var(--orchid-light);border-radius:10px;display:none;}
+.admin-result .gen-code{font-family:'Bellefair',serif;font-size:1.5rem;letter-spacing:.25em;color:var(--ivy);margin:.3rem 0;}
+.admin-result p{font-family:'Bellefair',serif;font-size:.8rem;color:var(--stone);}
+.admin-close{margin-top:1.2rem;width:100%;padding:.68rem;background:none;border:1.5px solid var(--stone);border-radius:50px;font-family:'Bellefair',serif;color:var(--stone);cursor:pointer;font-size:.88rem;}
+.admin-lock input{width:100%;padding:.62rem 1rem;border:1.5px solid var(--orchid);border-radius:10px;font-family:'Bellefair',serif;font-size:.93rem;color:var(--ivy);background:white;outline:none;margin-bottom:.7rem;}
+.admin-lock-err{font-family:'Bellefair',serif;font-size:.83rem;color:#a05060;min-height:1rem;margin-bottom:.5rem;}
+.admin-list{margin-top:.8rem;display:flex;flex-direction:column;gap:.5rem;}
+.admin-list-item{display:flex;align-items:center;justify-content:space-between;padding:.5rem .8rem;background:white;border-radius:8px;font-family:'Bellefair',serif;font-size:.85rem;color:var(--ivy);}
+.admin-list-item button{background:none;border:none;color:#a05060;cursor:pointer;font-size:.8rem;font-family:'Bellefair',serif;}
+.admin-tabs{display:flex;gap:.6rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.admin-tab{padding:.4rem 1rem;border-radius:50px;border:1.5px solid var(--stone);background:none;font-family:'Bellefair',serif;font-size:.82rem;color:var(--stone);cursor:pointer;}
+.admin-tab.active{background:var(--ivy);color:var(--linen);border-color:var(--ivy);}
+.admin-panel{display:none;}
+.admin-panel.active{display:block;}
+
+/* ── FOOTER ── */
+footer{background:var(--ivy);color:var(--linen);text-align:center;padding:3rem 2rem;}
+.footer-inner{display:flex;flex-direction:column;align-items:center;gap:.4rem;}
+.footer-logo-row{display:flex;align-items:center;gap:.8rem;justify-content:center;margin-bottom:.4rem;}
+.footer-brand{font-family:'Monsieur La Doulaise',cursive;font-size:2.8rem;}
+.footer-brand .hearts{color:var(--orchid);}
+.footer-tagline{font-family:'Bellefair',serif;font-style:italic;font-size:.98rem;opacity:.7;}
+.footer-attr{font-family:'Bellefair',serif;font-style:italic;font-size:.83rem;opacity:.45;}
+.footer-copy{font-family:'Bellefair',serif;font-size:.63rem;opacity:.35;letter-spacing:.05em;margin-top:.5rem;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .nav-divider,.nav-links{display:none;}
+  .hamburger{display:flex;}
+  section{padding:90px 4vw 50px;}
+  .hh-cards{grid-template-columns:1fr;}
+  .hotline-grid{grid-template-columns:1fr 1fr;}
+  .slide-grid{grid-template-columns:1fr 1fr;}
+  .poster-frame-wrap{height:380px;}
+}
+@media(max-width:480px){
+  .hotline-grid{grid-template-columns:1fr;}
+  .slide-grid{grid-template-columns:1fr;}
+  .pill-row{gap:.6rem;}
+  .pill{font-size:.8rem;padding:.55rem 1rem;}
+  .modal-btns{flex-direction:column;align-items:center;}
+  .cert-code-row{flex-direction:column;align-items:stretch;}
+  .poster-frame-wrap{height:320px;}
+  .chat-input-row{flex-wrap:wrap;}
+  .chat-input{width:100%;}
+  .chat-send{width:100%;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#home">
+    <img src="https://raw.githubusercontent.com/tryingtodothis/heavyhearts/main/logo.png" alt="HeavyHearts logo"/>
+    <span class="nav-title"><span class="heavy">Heavy</span><span class="hearts">Hearts</span></span>
+  </a>
+  <div class="nav-divider"></div>
+  <span class="nav-sub">A Mental Health Organization</span>
+  <ul class="nav-links">
+    <li><a href="#lifeline">Lifeline</a></li>
+    <li><a href="#healthyheart">Healthy Heart</a></li>
+    <li><a href="#heartbeat">Heartbeat</a></li>
+    <li><a href="#about">About</a></li>
+    <li><button class="nav-admin-btn" onclick="openAdmin()">Admin</button></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#lifeline" onclick="closeMenu()">Lifeline</a>
+  <a href="#healthyheart" onclick="closeMenu()">Healthy Heart</a>
+  <a href="#heartbeat" onclick="closeMenu()">Heartbeat</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <button onclick="closeMenu();openAdmin()">Admin</button>
+</div>
+
+<!-- HOME -->
+<section id="home">
+  <h1 class="hero-title"><span class="heavy">Heavy</span> <span class="hearts">Hearts</span></h1>
+  <p class="hero-tagline">"All lights turned off can be turned on."</p>
+  <p class="hero-attr">— Noah Kahan</p>
+  <div class="pill-row">
+    <a class="pill" href="#lifeline">
+      <svg width="34" height="20" viewBox="0 0 36 22" fill="none">
+        <polyline points="1,11 4,11 6,3 9,19 12,7 14,13 16,11 20,11" stroke="#3D4F2E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-s/>
+        <path d="M21,15 C21,15 20,11.5 22.5,10 C24,9.1 25.5,9.7 26.5,11 C27.5,9.7 29,9.1 30.5,10 C33,11.5 32,15 32,15 C30,17 26.5,19 26.5,19 C26.5,19 23,17 21,15 Z" fill="#3D4F2E" data-f/>
+      </svg>Lifeline
+    </a>
+    <a class="pill" href="#healthyheart">
+      <svg width="24" height="22" viewBox="0 0 26 24" fill="none">
+        <path d="M4,13 C4,13 3,9 5.5,7.5 C7,6.6 8.5,7.2 9.5,8.5 C10.5,7.2 12,6.6 13.5,7.5 C16,9 15,13 15,13 C13,15 9.5,17 9.5,17 C9.5,17 6,15 4,13 Z" stroke="#3D4F2E" stroke-width="1.5" stroke-linejoin="round" data-s/>
+        <line x1="7.5" y1="10" x2="9" y2="13.5" stroke="#3D4F2E" stroke-width="1.2" stroke-linecap="round" data-s/>
+        <line x1="6.8" y1="11" x2="8.2" y2="11" stroke="#3D4F2E" stroke-width=".9" stroke-linecap="round" data-s/>
+        <line x1="7.5" y1="12.5" x2="8.9" y2="12.5" stroke="#3D4F2E" stroke-width=".9" stroke-linecap="round" data-s/>
+        <line x1="10" y1="10" x2="11.5" y2="13.5" stroke="#3D4F2E" stroke-width="1.2" stroke-linecap="round" data-s/>
+        <line x1="9.3" y1="11" x2="10.7" y2="11" stroke="#3D4F2E" stroke-width=".9" stroke-linecap="round" data-s/>
+        <line x1="10" y1="12.5" x2="11.4" y2="12.5" stroke="#3D4F2E" stroke-width=".9" stroke-linecap="round" data-s/>
+      </svg>Healthy Heart
+    </a>
+    <a class="pill" href="#heartbeat">
+      <svg width="38" height="22" viewBox="0 0 40 24" fill="none">
+        <path d="M13,15 C13,15 12,11 14.5,9.5 C16,8.6 17.5,9.2 18.5,10.5 C19.5,9.2 21,8.6 22.5,9.5 C25,11 24,15 24,15 C22,17 18.5,19 18.5,19 C18.5,19 15,17 13,15 Z" stroke="#3D4F2E" stroke-width="1.4" stroke-linejoin="round" data-s/>
+        <path d="M10.5,8.5 Q8.5,14 10.5,16.5" stroke="#3D4F2E" stroke-width="1.2" stroke-linecap="round" opacity=".6" data-s/>
+        <path d="M7.5,6.5 Q4.5,14 7.5,18.5" stroke="#3D4F2E" stroke-width="1" stroke-linecap="round" opacity=".32" data-s/>
+        <path d="M26.5,8.5 Q28.5,14 26.5,16.5" stroke="#3D4F2E" stroke-width="1.2" stroke-linecap="round" opacity=".6" data-s/>
+        <path d="M29.5,6.5 Q32.5,14 29.5,18.5" stroke="#3D4F2E" stroke-width="1" stroke-linecap="round" opacity=".32" data-s/>
+      </svg>Heartbeat
+    </a>
+    <a class="pill" href="#about">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="9" stroke="#3D4F2E" stroke-width="1.5" data-s/>
+        <line x1="12" y1="9" x2="12" y2="14" stroke="#3D4F2E" stroke-width="1.5" stroke-linecap="round" data-s/>
+        <circle cx="12" cy="16.5" r="1" fill="#3D4F2E" data-f/>
+      </svg>About
+    </a>
+  </div>
+</section>
+
+<!-- LIFELINE -->
+<section id="lifeline" class="lace-bg">
+  <h2 class="sec-title">It's brave to seek help.</h2>
+  <p class="sec-sub">Speaks well about you. Lines from across the world who want to help you.</p>
+  <input class="search-box" id="hotlineSearch" placeholder="Search by country or organization…"/>
+  <div id="hotlinesContainer"></div>
+</section>
+
+<div class="modal-overlay" id="callModal">
+  <div class="modal">
+    <h3>Reach out?</h3>
+    <p>You're about to call a support line. You deserve to be heard.</p>
+    <div class="num-display" id="modalNum"></div>
+    <div class="modal-btns">
+      <button class="btn-call" id="modalCallBtn">Yes, call</button>
+      <button class="btn-cancel" onclick="closeModal()">Not now</button>
+    </div>
+  </div>
+</div>
+
+<!-- HEALTHY HEART -->
+<section id="healthyheart" class="lace-bg">
+  <h2 class="sec-title">Healthy Heart</h2>
+  <div class="hh-cards">
+    <div class="hh-card">
+      <div class="hh-card-title">Stitched Back Up</div>
+      <div class="hh-card-sub">Survival, healing, and hope.</div>
+      <div class="story-tabs">
+        <button class="story-tab active" id="stab-read" onclick="storyTab('read')">Read</button>
+        <button class="story-tab" id="stab-share" onclick="storyTab('share')">Share</button>
+      </div>
+      <div class="story-panel active" id="spanel-read">
+        <div class="story-card">
+          <blockquote>"It's not going to disappear — but you can diss it as a peer."</blockquote>
+          <cite>— Anonymous</cite>
+        </div>
+      </div>
+      <div class="story-panel" id="spanel-share">
+        <textarea class="share-textarea" id="shareText" placeholder="Share your story anonymously…"></textarea>
+        <button class="btn-primary" onclick="submitStory()">Share</button>
+      </div>
+    </div>
+    <div class="hh-card">
+      <div class="hh-card-title">Advocate Program</div>
+      <div class="hh-card-sub">Represent HeavyHearts at your school or community.</div>
+      <a href="https://form.typeform.com/to/fsniG6jt" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.6rem;padding:.72rem 1.6rem;background:var(--ivy);color:var(--linen);border-radius:50px;font-family:'Bellefair',serif;font-size:.95rem;text-decoration:none;margin-bottom:1.5rem;transition:background .2s;" onmouseover="this.style.background='var(--orchid)'" onmouseout="this.style.background='var(--ivy)'">
+        Apply as an Advocate ↗
+      </a>
+      <div class="cert-section">
+        <div class="cert-section-title">Download Your Certificate</div>
+        <p style="font-family:'Bellefair',serif;font-size:.83rem;color:var(--stone);margin-bottom:.9rem;line-height:1.6;">Once approved, you'll receive a code by email. Enter it below to unlock your certificate.</p>
+        <div class="cert-code-row">
+          <input class="cert-code-input" id="certCodeInput" type="text" placeholder="ENTER CODE" maxlength="8"/>
+          <button class="cert-unlock-btn" onclick="unlockCert()">Unlock</button>
+        </div>
+        <div class="cert-msg" id="certMsg"></div>
+        <button class="cert-dl-btn" id="certDlBtn" onclick="openCert()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v13M5 14l7 7 7-7"/><line x1="3" y1="21" x2="21" y2="21"/></svg>
+          Download Certificate
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HEARTBEAT -->
+<section id="heartbeat">
+  <h2 class="sec-title">Heartbeat</h2>
+  <div class="tab-row">
+    <button class="tab-btn active" id="tbtn-palpitations" onclick="switchTab('palpitations')">Palpitations</button>
+    <button class="tab-btn" id="tbtn-pulse" onclick="switchTab('pulse')">Pulse</button>
+  </div>
+  <div class="tab-content active" id="tab-palpitations">
+    <div id="advocateGate">
+      <div class="advocate-gate">
+        <h3>Advocates Only</h3>
+        <p>Presentations are available exclusively to HeavyHearts Advocates.</p>
+        <div style="display:flex;gap:.5rem;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap;">
+          <button class="story-tab active" id="gtab-login" onclick="gateTab('login')">Log In</button>
+          <button class="story-tab" id="gtab-signup" onclick="gateTab('signup')">Sign Up</button>
+        </div>
+        <div class="gate-form" id="gform-login">
+          <input type="email" id="gateEmail" placeholder="Email"/>
+          <input type="password" id="gatePass" placeholder="Password"/>
+          <div class="gate-err" id="gateErr"></div>
+          <button class="btn-primary" onclick="advocateLogin()">Log In</button>
+        </div>
+        <div class="gate-form" id="gform-signup" style="display:none;">
+          <input type="email" id="signupEmail" placeholder="Email"/>
+          <input type="password" id="signupPass" placeholder="Create a password"/>
+          <input type="password" id="signupPass2" placeholder="Confirm password"/>
+          <div class="gate-err" id="signupErr"></div>
+          <button class="btn-primary" onclick="advocateSignup()">Sign Up</button>
+        </div>
+      </div>
+    </div>
+    <div id="advocateContent" style="display:none;">
+      <p class="sec-sub">Fullscreen presentation decks — click to open in Google Slides.</p>
+      <div class="slide-grid" id="slideGrid"></div>
+      <div class="poster-section">
+        <h3>AI Poster Generator</h3>
+        <p>Describe a mental health message and get a custom designed poster you can download.</p>
+        <div class="chat-window" id="chatWindow"></div>
+        <div class="chat-input-row">
+          <input class="chat-input" id="chatInput" placeholder="e.g. hope after loss…" onkeydown="if(event.key==='Enter')sendChat()"/>
+          <button class="chat-send" onclick="sendChat()">Send</button>
+        </div>
+        <div class="poster-preview" id="posterPreview">
+          <div class="poster-preview-label">Your poster</div>
+          <div class="poster-frame-wrap"><iframe id="posterFrame" title="Generated Poster"></iframe></div>
+          <button class="dl-poster-btn" onclick="downloadPoster()">⬇ Download Poster</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-pulse">
+    <div class="pulse-form">
+      <div class="form-group"><label>Your Letter</label><textarea id="pulseMsg" placeholder="Write what's on your mind…"></textarea></div>
+      <div class="form-group"><label>Email (optional)</label><input type="email" id="pulseEmail" placeholder="your@email.com"/></div>
+      <div class="form-group"><label>Phone (optional)</label><input type="tel" id="pulsePhone" placeholder="+1 000 000 0000"/></div>
+      <button class="btn-primary" onclick="submitPulse()">Send Letter</button>
+      <div class="code-display" id="codeDisplay">
+        <div class="code" id="codeVal"></div>
+        <p>Save this code — you can use it to find your letter and any response.</p>
+      </div>
+    </div>
+    <div class="pro-section">
+      <h3>Professional Access</h3>
+      <p style="font-family:'Bellefair',serif;color:var(--stone);font-size:.88rem;margin-bottom:1rem;">Sign up or log in to respond to unanswered letters.</p>
+      <div class="pro-tabs">
+        <button class="pro-tab active" onclick="proTab('login')">Log In</button>
+        <button class="pro-tab" onclick="proTab('signup')">Sign Up</button>
+      </div>
+      <div class="pro-form active" id="pro-login">
+        <div class="form-group"><label>Email</label><input type="email" placeholder="professional@org.com"/></div>
+        <div class="form-group"><label>Password</label><input type="password" placeholder="••••••••"/></div>
+        <button class="btn-primary">Log In</button>
+      </div>
+      <div class="pro-form" id="pro-signup">
+        <div class="form-group"><label>Full Name</label><input type="text" placeholder="Dr. Jane Smith"/></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="professional@org.com"/></div>
+        <div class="form-group"><label>Credentials</label><input type="text" placeholder="Licensed Therapist · MindCare Clinic"/></div>
+        <div class="form-group"><label>Password</label><input type="password" placeholder="••••••••"/></div>
+        <button class="btn-primary">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="sec-title">About</h2>
+  <div class="about-text">Mental health has a weight to it that most people don't talk about. HeavyHearts started because that weight became impossible to ignore. Because words thrown around carelessly still land somewhere. Because advocacy shouldn't wait until it's convenient.<br/><br/>Sometimes all it takes is one person who gets it. One shifted perspective can stop a joke before it leaves someone's mouth. Can make a friend pause. Can make the world, in some small way, less careless.</div>
+  <div class="quote-block">
+    <blockquote>"It is vain to say human beings ought to be satisfied with tranquility: they must have action; and they will make it if they cannot find it."</blockquote>
+    <cite>— Charlotte Brontë, Jane Eyre</cite>
+  </div>
+  <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</button>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo-row">
+      <img src="https://raw.githubusercontent.com/tryingtodothis/heavyhearts/main/logo.png" style="width:36px;height:36px;object-fit:contain;filter:invert(1);" alt=""/>
+      <div class="footer-brand">Heavy<span class="hearts">Hearts</span></div>
+    </div>
+    <div class="footer-tagline">"All lights turned off can be turned on."</div>
+    <div class="footer-attr">— Noah Kahan</div>
+    <div class="footer-copy">© 2026 heavyhearts.org · All Rights Reserved</div>
+  </div>
+</footer>
+
+<!-- ADMIN OVERLAY -->
+<div class="modal-overlay" id="adminOverlay">
+  <div class="admin-box">
+    <h3>Admin</h3>
+
+    <!-- Lock screen -->
+    <div id="adminLock">
+      <div class="admin-lock">
+        <div id="adminSetupMsg" style="font-family:'Bellefair',serif;font-size:.9rem;color:var(--stone);margin-bottom:.8rem;line-height:1.6;display:none;">No password set yet. Create one to get started.</div>
+        <input type="password" id="adminPassInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkAdminPass()"/>
+        <input type="password" id="adminPassConfirm" placeholder="Confirm password" style="display:none;" onkeydown="if(event.key==='Enter')checkAdminPass()"/>
+        <div class="admin-lock-err" id="adminLockErr"></div>
+        <button class="admin-btn" onclick="checkAdminPass()" id="adminEnterBtn">Enter</button>
+      </div>
+    </div>
+
+    <!-- Authenticated content -->
+    <div id="adminContent" style="display:none;">
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="adminTab('codes')">Cert Codes</button>
+        <button class="admin-tab" onclick="adminTab('advocates')">Advocates</button>
+        <button class="admin-tab" onclick="adminTab('slides')">Slides</button>
+        <button class="admin-tab" onclick="adminTab('settings')">Settings</button>
+      </div>
+
+      <!-- CODES -->
+      <div class="admin-panel active" id="apanel-codes">
+        <div class="admin-section-title">Generate Certificate Code</div>
+        <input class="admin-input" type="text" id="adminName" placeholder="Advocate name"/>
+        <button class="admin-btn" onclick="generateCode()">Generate Code</button>
+        <div class="admin-result" id="adminResult">
+          <p>Code for <strong id="adminNameOut"></strong></p>
+          <div class="gen-code" id="adminCodeOut"></div>
+          <p>Copy and email this to the advocate.</p>
+        </div>
+        <div style="margin-top:1.2rem;">
+          <div class="admin-section-title" style="margin-bottom:.5rem;">Active Codes</div>
+          <div class="admin-list" id="codeList"></div>
+        </div>
+      </div>
+
+      <!-- ADVOCATES -->
+      <div class="admin-panel" id="apanel-advocates">
+        <div class="admin-section-title">Approve Advocate Email</div>
+        <p style="font-family:'Bellefair',serif;font-size:.8rem;color:var(--stone);margin-bottom:.7rem;line-height:1.5;">Approved emails can sign up for advocate access.</p>
+        <input class="admin-input" type="email" id="newAdvEmail" placeholder="Advocate email"/>
+        <button class="admin-btn" onclick="addAdvocate()">Approve</button>
+        <div class="admin-result" id="advResult"><p id="advResultMsg"></p></div>
+        <div style="margin-top:1.2rem;">
+          <div class="admin-section-title" style="margin-bottom:.5rem;">Approved Emails</div>
+          <div class="admin-list" id="advocateList"></div>
+        </div>
+      </div>
+
+      <!-- SLIDES -->
+      <div class="admin-panel" id="apanel-slides">
+        <div class="admin-section-title">Manage Presentation Slides</div>
+        <p style="font-family:'Bellefair',serif;font-size:.8rem;color:var(--stone);margin-bottom:.8rem;line-height:1.5;">Add or remove slide decks shown to advocates.</p>
+        <input class="admin-input" type="text" id="slideTitle" placeholder="Slide title (e.g. Breaking the Stigma)"/>
+        <input class="admin-input" type="text" id="slideUrl" placeholder="Google Slides URL"/>
+        <button class="admin-btn" onclick="addSlide()">Add Slide</button>
+        <div style="margin-top:1.2rem;">
+          <div class="admin-section-title" style="margin-bottom:.5rem;">Current Slides</div>
+          <div class="admin-list" id="slideList"></div>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="admin-panel" id="apanel-settings">
+        <div class="admin-section-title">Change Admin Password</div>
+        <input class="admin-input" type="password" id="newPass1" placeholder="New password"/>
+        <input class="admin-input" type="password" id="newPass2" placeholder="Confirm new password"/>
+        <div class="gate-err" id="passChangeErr" style="margin-bottom:.5rem;"></div>
+        <button class="admin-btn" onclick="changeAdminPass()">Update Password</button>
+      </div>
+    </div>
+
+    <button class="admin-close" onclick="closeAdmin()">Close</button>
+  </div>
+</div>
+
+<script>
+// ── STORAGE HELPERS (persists to window.storage if available, else in-memory) ──
+const mem = {};
+async function store(k, v) {
+  try { await window.storage.set(k, JSON.stringify(v)); } catch(e) { mem[k] = v; }
+}
+async function load(k, def) {
+  try {
+    const r = await window.storage.get(k);
+    return r ? JSON.parse(r.value) : def;
+  } catch(e) { return mem[k] !== undefined ? mem[k] : def; }
+}
+
+// ── STATE ──
+let ADMIN_PASS = 'HeavyHearts2026';
+let approvedEmails = new Set(['advocate@heavyhearts.org']);
+let advocateAccounts = new Map();
+let validCodes = new Set();
+let slides = [
+  {reading:"118/76", topic:"What Is Mental Health", url:"https://docs.google.com/presentation/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms/edit"},
+  {reading:"122/80", topic:"Language Matters",      url:"https://docs.google.com/presentation/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms/edit"},
+  {reading:"115/75", topic:"How to Be There",       url:"https://docs.google.com/presentation/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms/edit"},
+  {reading:"119/78", topic:"Breaking the Stigma",   url:"https://docs.google.com/presentation/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms/edit"}
+];
+
+async function initState() {
+  ADMIN_PASS      = await load('hh_admin_pass', null);
+  approvedEmails  = new Set(await load('hh_approved', ['advocate@heavyhearts.org']));
+  advocateAccounts= new Map(Object.entries(await load('hh_accounts', {})));
+  validCodes      = new Set(await load('hh_codes', []));
+  slides          = await load('hh_slides', slides);
+}
+
+async function saveApproved()  { await store('hh_approved', [...approvedEmails]); }
+async function saveAccounts()  { await store('hh_accounts', Object.fromEntries(advocateAccounts)); }
+async function saveCodes()     { await store('hh_codes', [...validCodes]); }
+async function saveSlides()    { await store('hh_slides', slides); }
+async function savePass()      { await store('hh_admin_pass', ADMIN_PASS); }
+
+initState();
+
+// ── NAV ──
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMenu()  { document.getElementById('mobileMenu').classList.remove('open'); }
+
+// ── HOTLINES ──
+const hotlines = {
+  "North America":[
+    {name:"988 Suicide & Crisis Lifeline",country:"USA",num:"988"},
+    {name:"Crisis Text Line",country:"USA",num:"Text HOME to 741741"},
+    {name:"Trans Lifeline",country:"USA / Canada",num:"877-565-8860"},
+    {name:"Veterans Crisis Line",country:"USA",num:"988 then press 1"},
+    {name:"NAMI Helpline",country:"USA",num:"1-800-950-6264"},
+    {name:"Crisis Services Canada",country:"Canada",num:"1-833-456-4566"},
+    {name:"Kids Help Phone",country:"Canada",num:"1-800-668-6868"},
+    {name:"SAPTEL",country:"Mexico",num:"55-5259-8121"},
+  ],
+  "Europe":[
+    {name:"Samaritans",country:"UK",num:"116 123"},
+    {name:"Mind Infoline",country:"UK",num:"0300 123 3393"},
+    {name:"Telefonseelsorge",country:"Germany",num:"0800 111 0 111"},
+    {name:"SOS Amitié",country:"France",num:"09 72 39 40 50"},
+    {name:"Befrienders Ireland",country:"Ireland",num:"116 123"},
+    {name:"Telefono Amico",country:"Italy",num:"02 2327 2327"},
+    {name:"Teléfono de la Esperanza",country:"Spain",num:"717 003 717"},
+    {name:"De Luisterlijn",country:"Netherlands",num:"0800 0767"},
+    {name:"Mind Belgique",country:"Belgium",num:"0800 32 123"},
+    {name:"Självmordslinjen",country:"Sweden",num:"90101"},
+    {name:"Senter for Krisepsykologi",country:"Norway",num:"116 123"},
+    {name:"Dansk Telefonrådgivning",country:"Denmark",num:"70 201 201"},
+    {name:"Mieli ry Crisis Line",country:"Finland",num:"09 2525 0111"},
+    {name:"Lifeline Greece",country:"Greece",num:"10306"},
+    {name:"Kryzysowy Telefon Zaufania",country:"Poland",num:"116 123"},
+    {name:"SOS Voz Amiga",country:"Portugal",num:"213 544 545"},
+  ],
+  "Asia & Pacific":[
+    {name:"Lifeline Australia",country:"Australia",num:"13 11 14"},
+    {name:"Beyond Blue",country:"Australia",num:"1300 22 4636"},
+    {name:"Lifeline New Zealand",country:"New Zealand",num:"0800 543 354"},
+    {name:"iCall",country:"India",num:"9152987821"},
+    {name:"Vandrevala Foundation",country:"India",num:"1860-2662-345"},
+    {name:"Befrienders Malaysia",country:"Malaysia",num:"03-7627 2929"},
+    {name:"Samaritans of Thailand",country:"Thailand",num:"02-713-6793"},
+    {name:"Samaritans of Hong Kong",country:"Hong Kong",num:"2382 0000"},
+    {name:"Befrienders Singapore",country:"Singapore",num:"1-767"},
+    {name:"Tokyo Inochi no Denwa",country:"Japan",num:"0120-783-556"},
+    {name:"Korea Suicide Prevention Hotline",country:"South Korea",num:"1393"},
+    {name:"Befrienders Taiwan",country:"Taiwan",num:"1925"},
+    {name:"Hopeline",country:"Philippines",num:"2919"},
+    {name:"Vietnam Mental Health Hotline",country:"Vietnam",num:"1800 599 920"},
+    {name:"Lao Mental Health Helpline",country:"Laos",num:"1323"},
+  ],
+  "Middle East & Africa":[
+    {name:"ERAN",country:"Israel",num:"1201"},
+    {name:"NATAL",country:"Israel",num:"1-800-363-363"},
+    {name:"Befrienders South Africa",country:"South Africa",num:"0800 567 567"},
+    {name:"Careline",country:"South Africa",num:"011 995 1819"},
+    {name:"SADAG",country:"South Africa",num:"0800 456 789"},
+    {name:"Egypt Mental Health Hotline",country:"Egypt",num:"08008880700"},
+    {name:"Umang Pakistan",country:"Pakistan",num:"0311-7786264"},
+  ],
+  "Latin America & Caribbean":[
+    {name:"Centro de Valorização da Vida",country:"Brazil",num:"188"},
+    {name:"SAPTEL",country:"Mexico",num:"55-5259-8121"},
+    {name:"Línea 106",country:"Peru",num:"106"},
+    {name:"Centro de Asistencia al Suicida",country:"Argentina",num:"135"},
+    {name:"Teléfono de la Esperanza",country:"Chile",num:"600 360 7777"},
+    {name:"ASSMCA",country:"Puerto Rico",num:"1-800-981-0023"},
+    {name:"Crisis Line Jamaica",country:"Jamaica",num:"888-639-5433"},
+  ]
+};
+
+function renderHotlines(f='') {
+  const c = document.getElementById('hotlinesContainer'); c.innerHTML = '';
+  Object.entries(hotlines).forEach(([cont, lines]) => {
+    const fl = lines.filter(h => h.name.toLowerCase().includes(f) || h.country.toLowerCase().includes(f) || h.num.toLowerCase().includes(f));
+    if (!fl.length) return;
+    const g = document.createElement('div'); g.className = 'continent-group';
+    g.innerHTML = `<div class="continent-label">${cont}</div><div class="hotline-grid"></div>`;
+    fl.forEach(h => {
+      const card = document.createElement('div'); card.className = 'hotline-card';
+      card.innerHTML = `<div class="hotline-name">${h.name}</div><div class="hotline-country">${h.country}</div><div class="hotline-num" onclick="openCallModal('${h.num}')">${h.num}</div>`;
+      g.querySelector('.hotline-grid').appendChild(card);
+    });
+    c.appendChild(g);
+  });
+}
+document.getElementById('hotlineSearch').addEventListener('input', function() { renderHotlines(this.value.toLowerCase()); });
+renderHotlines();
+
+function openCallModal(num) {
+  document.getElementById('modalNum').textContent = num;
+  document.getElementById('modalCallBtn').onclick = () => { window.location.href = 'tel:' + num.replace(/[^0-9+]/g,''); closeModal(); };
+  document.getElementById('callModal').classList.add('active');
+}
+function closeModal() { document.getElementById('callModal').classList.remove('active'); }
+document.getElementById('callModal').addEventListener('click', e => { if (e.target === document.getElementById('callModal')) closeModal(); });
+
+// ── TABS ──
+function switchTab(name) {
+  ['palpitations','pulse'].forEach(t => {
+    document.getElementById('tbtn-' + t).classList.toggle('active', t === name);
+    document.getElementById('tab-' + t).classList.toggle('active', t === name);
+  });
+}
+
+// ── GATE ──
+function gateTab(name) {
+  ['login','signup'].forEach(t => {
+    document.getElementById('gtab-' + t).classList.toggle('active', t === name);
+    document.getElementById('gform-' + t).style.display = t === name ? 'flex' : 'none';
+  });
+}
+
+function advocateSignup() {
+  const email = document.getElementById('signupEmail').value.trim().toLowerCase();
+  const pass  = document.getElementById('signupPass').value;
+  const pass2 = document.getElementById('signupPass2').value;
+  const err   = document.getElementById('signupErr');
+  if (!email || !pass) { err.textContent = 'Please fill in all fields.'; return; }
+  if (pass !== pass2)  { err.textContent = 'Passwords do not match.'; return; }
+  if (!approvedEmails.has(email)) { err.textContent = 'This email has not been approved yet.'; return; }
+  if (advocateAccounts.has(email)) { err.textContent = 'Account already exists. Please log in.'; return; }
+  advocateAccounts.set(email, pass);
+  saveAccounts();
+  err.style.color = 'var(--ivy)';
+  err.textContent = 'Account created. You can now log in.';
+  gateTab('login');
+  document.getElementById('gateEmail').value = email;
+}
+
+function advocateLogin() {
+  const email = document.getElementById('gateEmail').value.trim().toLowerCase();
+  const pass  = document.getElementById('gatePass').value;
+  const err   = document.getElementById('gateErr');
+  if (advocateAccounts.get(email) === pass) {
+    document.getElementById('advocateGate').style.display = 'none';
+    document.getElementById('advocateContent').style.display = 'block';
+    buildSlides();
+  } else {
+    err.textContent = 'Incorrect credentials. Please try again.';
+  }
+}
+
+// ── SLIDES ──
+let slidesBuilt = false;
+function buildSlides() {
+  const grid = document.getElementById('slideGrid');
+  grid.innerHTML = '';
+  slidesBuilt = true;
+  slides.forEach(s => {
+    const card = document.createElement('div'); card.className = 'slide-card';
+    card.innerHTML = `<div class="slide-reading">${s.reading || ''}</div><div class="slide-topic">${s.topic}</div><div class="slide-dl">↗ Open in Google Slides</div>`;
+    card.onclick = () => window.open(s.url, '_blank');
+    grid.appendChild(card);
+  });
+}
+
+// ── AI POSTER ──
+let posterHTML = '';
+async function sendChat() {
+  const inp = document.getElementById('chatInput');
+  const msg = inp.value.trim(); if (!msg) return;
+  inp.value = ''; addMsg(msg, 'user');
+  const thinking = addMsg('Designing your poster…', 'ai');
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514', max_tokens: 1500,
+        system: `You are a mental health poster designer for HeavyHearts. Return ONLY a raw HTML document starting with <!DOCTYPE html>. No markdown, no backticks, no explanation.
+The poster must: background:#3D4F2E; import Monsieur La Doulaise + Bellefair from Google Fonts; center content; large headline in Monsieur La Doulaise color:#C9A8BC font-size:clamp(3rem,8vw,6rem); supporting text in Bellefair color:#FAF6F0 font-size:1.2rem max-width:600px line-height:1.8; fixed top-left "HeavyHearts" in Monsieur La Doulaise color:#C9A8BC; fixed bottom-center "heavyhearts.org" in Bellefair color:#C9A8BC opacity:.45; no images.`,
+        messages: [{ role: 'user', content: `Create a mental health poster about: ${msg}` }]
+      })
+    });
+    const data = await res.json();
+    thinking.remove();
+    let text = (data.content || []).map(c => c.text || '').join('').trim();
+    text = text.replace(/^```html\s*/i,'').replace(/^```\s*/i,'').replace(/```\s*$/,'').trim();
+    if (!text.toLowerCase().startsWith('<!doctype')) { addMsg('Could not generate poster — try a different description.', 'ai'); return; }
+    posterHTML = text;
+    addMsg('Your poster is ready — preview and download below.', 'ai');
+    const blob = new Blob([posterHTML], { type: 'text/html' });
+    document.getElementById('posterFrame').src = URL.createObjectURL(blob);
+    document.getElementById('posterPreview').style.display = 'block';
+  } catch(e) { thinking.textContent = 'Something went wrong. Please try again.'; }
+}
+function addMsg(txt, role) {
+  const cw = document.getElementById('chatWindow');
+  const d = document.createElement('div'); d.className = 'chat-msg ' + role; d.textContent = txt;
+  cw.appendChild(d); cw.scrollTop = cw.scrollHeight; return d;
+}
+function downloadPoster() {
+  if (!posterHTML) return;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([posterHTML], { type: 'text/html' }));
+  a.download = 'HeavyHearts_Poster.html';
+  document.body.appendChild(a); a.click();
+  setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(a.href); }, 200);
+}
+
+// ── PULSE ──
+function submitPulse() {
+  const msg = document.getElementById('pulseMsg').value.trim(); if (!msg) return;
+  const email = document.getElementById('pulseEmail').value.trim();
+  const phone = document.getElementById('pulsePhone').value.trim();
+  const code = Math.floor(100000 + Math.random() * 900000).toString();
+  emailjs.send('service_2tkhdvp', 'template_okwk0rg', {
+    name: 'Anonymous', email: email || 'Not provided', school: '—', country: '—',
+    why: `PULSE LETTER (code: ${code})\n\n${msg}\n\nPhone: ${phone || 'Not provided'}`
+  }).catch(() => {});
+  document.getElementById('codeVal').textContent = code;
+  document.getElementById('codeDisplay').style.display = 'block';
+}
+function proTab(name) {
+  document.querySelectorAll('.pro-tab').forEach((b, i) => b.classList.toggle('active', ['login','signup'][i] === name));
+  document.querySelectorAll('.pro-form').forEach(f => f.classList.remove('active'));
+  document.getElementById('pro-' + name).classList.add('active');
+}
+
+// ── STORIES ──
+function storyTab(name) {
+  ['read','share'].forEach(t => {
+    document.getElementById('stab-' + t).classList.toggle('active', t === name);
+    document.getElementById('spanel-' + t).classList.toggle('active', t === name);
+  });
+}
+function submitStory() {
+  const t = document.getElementById('shareText').value.trim(); if (!t) return;
+  const card = document.createElement('div'); card.className = 'story-card';
+  card.innerHTML = `<blockquote>"${t}"</blockquote><cite>— Anonymous</cite>`;
+  document.getElementById('spanel-read').appendChild(card);
+  document.getElementById('shareText').value = '';
+  storyTab('read');
+}
+
+// ── CERT ──
+function unlockCert() {
+  const input = document.getElementById('certCodeInput').value.trim().toUpperCase();
+  const msg = document.getElementById('certMsg');
+  const btn = document.getElementById('certDlBtn');
+  if (!input) { msg.textContent = 'Please enter your code.'; msg.className = 'cert-msg'; return; }
+  if (validCodes.has(input)) {
+    msg.textContent = 'Code accepted. Your certificate is ready.';
+    msg.className = 'cert-msg success';
+    btn.style.display = 'inline-flex';
+  } else {
+    msg.textContent = 'Invalid code. Please check and try again.';
+    msg.className = 'cert-msg error';
+    btn.style.display = 'none';
+  }
+}
+function openCert() {
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"/><title>HeavyHearts Certificate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Bellefair&display=swap" rel="stylesheet"/>
+  <style>*{margin:0;padding:0;box-sizing:border-box;}body{background:#FAF6F0;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:'Bellefair',serif;padding:2rem;}
+  .cert{width:800px;max-width:100%;border:3px solid #3D4F2E;border-radius:8px;padding:4rem;text-align:center;position:relative;}
+  .cert::before{content:'';position:absolute;inset:12px;border:1px solid #C9A8BC;border-radius:4px;pointer-events:none;}
+  .logo-title{font-family:'Monsieur La Doulaise',cursive;font-size:3.5rem;color:#3D4F2E;}.logo-title span{color:#C9A8BC;}
+  .sub{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:#7A8A96;margin-bottom:2rem;}
+  h1{font-family:'Monsieur La Doulaise',cursive;font-size:2.5rem;color:#3D4F2E;margin-bottom:.5rem;}
+  .body-text{font-size:1rem;color:#7A8A96;line-height:1.8;margin-bottom:1rem;}
+  .name-line{border-bottom:1px solid #3D4F2E;width:300px;margin:1.5rem auto;height:40px;}
+  .foot{font-size:.8rem;color:#7A8A96;margin-top:2rem;}
+  @media print{body{background:white;padding:0;}}</style></head>
+  <body><div class="cert">
+  <div class="logo-title">Heavy<span>Hearts</span></div>
+  <div class="sub">A Mental Health Organization</div>
+  <h1>Certificate of Advocacy</h1>
+  <div class="body-text">This certifies that</div>
+  <div class="name-line"></div>
+  <div class="body-text">has been recognized as an official<br/><strong>HeavyHearts Advocate</strong><br/>for their commitment to mental health advocacy,<br/>compassionate community leadership, and the belief<br/>that every heart — however heavy — deserves to be heard.</div>
+  <div class="foot">© 2026 heavyhearts.org · All Rights Reserved</div>
+  </div><script>window.onload=()=>setTimeout(()=>window.print(),600);<\/script></body></html>`;
+  const w = window.open('', '_blank');
+  if (w) { w.document.write(html); w.document.close(); }
+}
+
+// ── ADMIN ──
+async function openAdmin() {
+  const stored = await load('hh_admin_pass', null);
+  const lock = document.getElementById('adminLock');
+  const inp = document.getElementById('adminPassInput');
+  const confirm = document.getElementById('adminPassConfirm');
+  const msg = document.getElementById('adminSetupMsg');
+  const btn = document.getElementById('adminEnterBtn');
+  if (!stored) {
+    msg.style.display = 'block';
+    confirm.style.display = 'block';
+    inp.placeholder = 'Create a password';
+    btn.textContent = 'Set Password';
+  } else {
+    msg.style.display = 'none';
+    confirm.style.display = 'none';
+    inp.placeholder = 'Password';
+    btn.textContent = 'Enter';
+  }
+  document.getElementById('adminOverlay').classList.add('active');
+}
+function closeAdmin() {
+  document.getElementById('adminOverlay').classList.remove('active');
+  document.getElementById('adminLock').style.display = 'block';
+  document.getElementById('adminContent').style.display = 'none';
+  document.getElementById('adminPassInput').value = '';
+  document.getElementById('adminPassConfirm').value = '';
+  document.getElementById('adminLockErr').textContent = '';
+}
+document.getElementById('adminOverlay').addEventListener('click', e => { if (e.target === document.getElementById('adminOverlay')) closeAdmin(); });
+
+async function checkAdminPass() {
+  const stored = await load('hh_admin_pass', null);
+  const val = document.getElementById('adminPassInput').value;
+  const confirm = document.getElementById('adminPassConfirm').value;
+  const err = document.getElementById('adminLockErr');
+  if (!stored) {
+    if (!val) { err.textContent = 'Please enter a password.'; return; }
+    if (val !== confirm) { err.textContent = 'Passwords do not match.'; return; }
+    ADMIN_PASS = val; await savePass();
+  } else {
+    if (val !== stored) { err.textContent = 'Incorrect password.'; return; }
+    ADMIN_PASS = stored;
+  }
+  document.getElementById('adminLock').style.display = 'none';
+  document.getElementById('adminContent').style.display = 'block';
+  renderAdminLists();
+}
+
+function adminTab(name) {
+  document.querySelectorAll('.admin-tab').forEach((b, i) => b.classList.toggle('active', ['codes','advocates','slides','settings'][i] === name));
+  document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('apanel-' + name).classList.add('active');
+}
+
+function renderAdminLists() {
+  // codes
+  const cl = document.getElementById('codeList'); cl.innerHTML = '';
+  [...validCodes].forEach(c => {
+    const item = document.createElement('div'); item.className = 'admin-list-item';
+    item.innerHTML = `<span>${c}</span><button onclick="removeCode('${c}')">Remove</button>`;
+    cl.appendChild(item);
+  });
+  if (!validCodes.size) cl.innerHTML = '<div style="font-family:\'Bellefair\',serif;font-size:.82rem;color:var(--stone);">No active codes.</div>';
+
+  // advocates
+  const al = document.getElementById('advocateList'); al.innerHTML = '';
+  [...approvedEmails].forEach(e => {
+    const item = document.createElement('div'); item.className = 'admin-list-item';
+    item.innerHTML = `<span>${e}</span><button onclick="removeAdvocate('${e}')">Remove</button>`;
+    al.appendChild(item);
+  });
+
+  // slides
+  renderSlideList();
+}
+
+function removeCode(c) { validCodes.delete(c); saveCodes(); renderAdminLists(); }
+function removeAdvocate(e) { approvedEmails.delete(e); saveApproved(); renderAdminLists(); }
+
+function generateCode() {
+  const name = document.getElementById('adminName').value.trim(); if (!name) return;
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = ''; for (let i = 0; i < 7; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  validCodes.add(code); saveCodes();
+  document.getElementById('adminNameOut').textContent = name;
+  document.getElementById('adminCodeOut').textContent = code;
+  document.getElementById('adminResult').style.display = 'block';
+  document.getElementById('adminName').value = '';
+  renderAdminLists();
+}
+
+function addAdvocate() {
+  const email = document.getElementById('newAdvEmail').value.trim().toLowerCase();
+  const res = document.getElementById('advResult');
+  const msg = document.getElementById('advResultMsg');
+  if (!email) { msg.textContent = 'Please enter an email.'; res.style.display = 'block'; return; }
+  approvedEmails.add(email); saveApproved();
+  msg.textContent = `"${email}" approved.`;
+  res.style.display = 'block';
+  document.getElementById('newAdvEmail').value = '';
+  renderAdminLists();
+}
+
+function addSlide() {
+  const title = document.getElementById('slideTitle').value.trim();
+  const url   = document.getElementById('slideUrl').value.trim();
+  if (!title || !url) return;
+  slides.push({ topic: title, url, reading: '' });
+  saveSlides();
+  document.getElementById('slideTitle').value = '';
+  document.getElementById('slideUrl').value   = '';
+  renderSlideList();
+  slidesBuilt = false; // force rebuild if advocate is logged in
+}
+
+function removeSlide(i) {
+  slides.splice(i, 1); saveSlides(); renderSlideList(); slidesBuilt = false;
+}
+
+function renderSlideList() {
+  const sl = document.getElementById('slideList'); sl.innerHTML = '';
+  slides.forEach((s, i) => {
+    const item = document.createElement('div'); item.className = 'admin-list-item';
+    item.innerHTML = `<span>${s.topic}</span><button onclick="removeSlide(${i})">Remove</button>`;
+    sl.appendChild(item);
+  });
+  if (!slides.length) sl.innerHTML = '<div style="font-family:\'Bellefair\',serif;font-size:.82rem;color:var(--stone);">No slides.</div>';
+}
+
+function changeAdminPass() {
+  const p1 = document.getElementById('newPass1').value;
+  const p2 = document.getElementById('newPass2').value;
+  const err = document.getElementById('passChangeErr');
+  if (!p1) { err.textContent = 'Please enter a new password.'; return; }
+  if (p1 !== p2) { err.textContent = 'Passwords do not match.'; return; }
+  ADMIN_PASS = p1; savePass();
+  err.style.color = 'var(--ivy)'; err.textContent = 'Password updated.';
+  document.getElementById('newPass1').value = '';
+  document.getElementById('newPass2').value = '';
+}
+</script>
+</body>
+</html>
